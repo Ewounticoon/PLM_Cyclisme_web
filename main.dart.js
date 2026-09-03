@@ -140520,12 +140520,13 @@ if(!d.RK(a0)){r=a?c:B.b.l(a0.x,"cycliste_competition")
 o=r===!0}else o=!0
 if((a?c:a0.w)!==B.b8)n=(a?c:a0.w)===B.aP
 else n=!0
-a=A.b([B.aK9,B.aKd,B.aK7],t.vc)
-if(n)a.push(B.aKf)
+a=A.b([B.aK9,B.aKd],t.vc)
 if(o)a.push(B.aKe)
 if(p)a.push(B.aKb)
-if(s)a.push(B.aK6)
+if(n)a.push(B.aKf)
+a.push(B.aK7)
 if(a1)a.push(B.aKc)
+if(s)a.push(B.aK6)
 if(q)a.push(B.aKa)
 if(q)a.push(B.aK8)
 a.push(B.aKg)
@@ -140819,7 +140820,7 @@ case 4:++o
 s=3
 break
 case 5:m=A
-l="9a5c12951efb6f9ccd24dc3e8c9d1ff3b6fe3825"
+l="3490790fffb8f7fa419e7101929c322967aac39e"
 s=7
 return A.i(p.Hx(),$async$iN)
 case 7:q=new m.po(l,c,n)
@@ -143747,7 +143748,7 @@ s=7
 return A.i(n.d.KP(),$async$Ay)
 case 7:m=b
 if(n.c==null||m==null){s=1
-break}if(m!=="9a5c12951efb6f9ccd24dc3e8c9d1ff3b6fe3825")n.B(new A.aSC(n))
+break}if(m!=="3490790fffb8f7fa419e7101929c322967aac39e")n.B(new A.aSC(n))
 p=2
 s=6
 break
