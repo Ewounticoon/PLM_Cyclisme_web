@@ -36,6 +36,28 @@
   <link rel="manifest" href="manifest.json?v=3">
 </head>
 <body>
+  <script>
+    let plmDeferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      plmDeferredInstallPrompt = event;
+    });
+
+    window.addEventListener('appinstalled', () => {
+      plmDeferredInstallPrompt = null;
+    });
+
+    window.plmCanPromptInstall = () => plmDeferredInstallPrompt !== null;
+    window.plmPromptInstall = async () => {
+      if (!plmDeferredInstallPrompt) return false;
+      const prompt = plmDeferredInstallPrompt;
+      plmDeferredInstallPrompt = null;
+      await prompt.prompt();
+      const choice = await prompt.userChoice;
+      return choice.outcome === 'accepted';
+    };
+  </script>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
