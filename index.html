@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/PLM_Cyclisme_web/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Application du club Paray le Monial Cyclisme.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="PLM Cyclisme">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/paray-apple-touch-icon.png?v=3">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png?v=3">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png?v=3"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/Icon-192.png?v=3"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/Icon-512.png?v=3"/>
+
+  <title>PLM Cyclisme</title>
+  <link rel="manifest" href="manifest.json?v=3">
+  <script src="https://unpkg.com/maplibre-gl@^4.3/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@^4.3/dist/maplibre-gl.css" rel="stylesheet">
+  <style>
+    .maplibregl-map,
+    .maplibregl-canvas-container,
+    .maplibregl-canvas {
+      touch-action: none !important;
+      overscroll-behavior: contain;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let plmDeferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      plmDeferredInstallPrompt = event;
+    });
+
+    window.addEventListener('appinstalled', () => {
+      plmDeferredInstallPrompt = null;
+    });
+
+    window.plmCanPromptInstall = () => plmDeferredInstallPrompt !== null;
+    window.plmPromptInstall = async () => {
+      if (!plmDeferredInstallPrompt) return false;
+      const prompt = plmDeferredInstallPrompt;
+      plmDeferredInstallPrompt = null;
+      await prompt.prompt();
+      const choice = await prompt.userChoice;
+      return choice.outcome === 'accepted';
+    };
+  </script>
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
